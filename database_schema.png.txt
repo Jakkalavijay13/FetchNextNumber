@@ -1,0 +1,24 @@
+Based on the code provided, the database schema for the `FetchNextNumberAPI` can be assumed as follows:
+
+Table Name: `your_table`
+
+| Column Name   | Data Type | Description                           |
+|---------------|-----------|---------------------------------------|
+| CategoryCode  | VARCHAR   | The category code for the next number  |
+| Value         | INT       | The current value for the category     |
+
+This schema assumes that the `your_table` table exists in the MySQL database specified in the `DB_URL` constant. The API fetches the value based on the `CategoryCode` and updates the `Value` column with the next calculated number.
+
+You can create the `your_table` table in your MySQL database using the following SQL statement:
+
+```sql
+CREATE TABLE your_table (
+  CategoryCode VARCHAR(255) NOT NULL,
+  Value INT NOT NULL,
+  PRIMARY KEY (CategoryCode)
+);
+```
+
+Make sure to adjust the column data types and lengths according to your specific requirements.
+
+Note: It's important to have the database schema and table created in your MySQL database before running the code. Ensure that the database connection details (URL, username, and password) in the `DB_URL`, `DB_USERNAME`, and `DB_PASSWORD` constants are correct and correspond to your database setup.

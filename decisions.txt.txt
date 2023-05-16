@@ -1,0 +1,17 @@
+The FetchNextNumberAPI code exhibits the following design/architectural patterns and decisions:
+
+1. Singleton Pattern: The `fetchNextNumber` method in the `FetchNextNumberAPI` class is declared as `synchronized`, making it thread-safe and ensuring that only one instance of the API is created. This follows the Singleton pattern, allowing synchronized access to the critical sections of the code.
+
+2. Layered Architecture: The code follows a layered architecture where different responsibilities are separated into different methods. The `FetchNextNumberAPI` class handles the business logic, while the `DataAccess` class handles the database operations. This separation of concerns promotes maintainability and modularity.
+
+3. Transaction Management: The code demonstrates transaction management by setting the auto-commit mode to `false` and explicitly committing or rolling back the transaction based on the outcome. This ensures data consistency and atomicity of the database operations.
+
+4. Locking Mechanism : The API uses the `LOCK TABLES` statement to lock the database table and prevent concurrent access during the critical sections of code. The table is unlocked using the `UNLOCK TABLES` statement after the update operation is completed. This ensures data integrity and prevents race conditions.
+
+5. Error Handling: The code includes basic error handling by catching `SQLException` and printing the stack trace. It also rolls back the transaction in case of an exception to maintain data consistency. However, you may want to enhance the error handling based on your application's requirements.
+
+6. Data Access Object (DAO) Pattern: Although not explicitly labeled as a DAO pattern, the separation of data access logic into the `DataAccess` class resembles the DAO pattern. It encapsulates the database operations and provides methods to interact with the database, promoting separation of concerns and code reusability.
+
+7. Code Reusability: The code promotes code reusability by encapsulating database operations in separate methods, such as `fetchValueFromDatabase` and `updateTableWithNumber`. These methods can be easily reused in other parts of the codebase or extended to handle additional database-related functionality.
+
+These design/architectural patterns and decisions help in achieving a modular, maintainable, and scalable codebase for the FetchNextNumberAPI. They promote separation of concerns, data integrity, and code reusability.

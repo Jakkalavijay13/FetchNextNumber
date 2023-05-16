@@ -1,0 +1,28 @@
+Here's a minimal usage guide for the FetchNextNumberAPI along with the features implemented:
+
+Endpoint: The API exposes a single endpoint: /nextNumber/{categoryCode}. You need to replace {categoryCode} with the actual category code you want to fetch the next number for.
+
+Request: Send a GET request to http://localhost:8080/nextNumber/{categoryCode} using a tool like Postman.
+
+Response: The API responds with a JSON object containing the old value and the new calculated value. For example:
+{
+  "OldValue": 10,
+  "NewValue": 12
+}
+The OldValue represents the fetched value from the database, and the NewValue represents the next number calculated based on the fetched value.
+
+Concurrency: The API uses synchronization (synchronized) to handle concurrent requests, ensuring that only one request can access the critical sections of the code at a time. This prevents concurrent access to the table and ensures data integrity.
+
+Database: The API fetches the value from a MySQL database table named your_table based on the provided categoryCode. It uses JDBC to establish a connection and execute SQL queries to fetch and update the value in the table.
+
+Transaction Management: The API uses a transaction to wrap the database operations. It begins a transaction, updates the table with the next number, and commits the transaction if everything is successful. In case of an exception, it rolls back the transaction to maintain data consistency.
+
+Locking: The API locks the database table using the LOCK TABLES statement to prevent concurrent access and ensure atomicity. After updating the table, it releases the lock using the UNLOCK TABLES statement.
+
+Delay: The API introduces a simulated delay of 5 seconds using Thread.sleep(5000). This delay simulates other processing that may occur in your application and helps demonstrate the synchronization and locking mechanism.
+
+These are the main features implemented in the FetchNextNumberAPI. You can modify and enhance the code as per your requirements, such as adding error handling, input validation, authentication, and more.
+
+
+
+
